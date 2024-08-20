@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service Transition</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #fff;
+            padding: 10px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .logo img {
+            width: 120px;
+            height: auto;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-grow: 1;
+            text-align: right;
+        }
+        .menu a {
+            margin-left: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu a:hover {
+            color: white;
+            background-color: #f05454;
+        }
+        .main-header {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 28px;
+            color: #4f4f4f;
+            font-weight: bold;
+            position: relative;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+        .features-section {
+            width: 25%;
+            background: linear-gradient(145deg, #ffffff, #f1f1f1);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .features-section:hover {
+            transform: translateY(-5px);
+        }
+        .features-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features-list li {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        .features-list li:hover {
+            background-color: #f05454;
+            color: white;
+            border-radius: 5px;
+        }
+        .features-list .bold {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .submenu {
+            list-style-type: none;
+            padding: 0;
+            padding-left: 20px;
+            margin: 0;
+            display: none;
+        }
+        .submenu li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        .submenu li:hover {
+            background-color: #f05454;
+            color: white;
+            border-radius: 5px;
+        }
+        .submenu li a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .step-by-step-document, .pending-items {
+            width: 75%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Times New Roman', Times, serif;
+            display: none; 
+        }
+        .document-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .document-header img {
+            max-height: 60px;
+        }
+        .document-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        .step-section {
+            margin-bottom: 20px;
+        }
+        .step-section h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .step-section p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .step-section img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .audience-table, .pending-items-table {
+            width: 100%; 
+            margin: 20px 0;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .audience-table th, .audience-table td, .pending-items-table th, .pending-items-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .audience-table th, .pending-items-table th {
+            background-color: #f05454;
+            color: white;
+        }
+        .pending-items-table td a {
+            color: #f05454;
+            text-decoration: none;
+        }
+        .cr-list-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+        .cr-list-table th, .cr-list-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .cr-list-table th {
+            background-color: #f05454;
+            color: white;
+        }
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8a8988;
+            color: white;
+            padding: 20px;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer img {
+            max-width: 100%;
+            height: auto;
+            max-height: 60px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-container button {
+            background-color: #f05454;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button-container button:hover {
+            background-color: #d04848;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="SO.png" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="#home">Customer Service</a>
+            <a href="#services">Workforce</a>
+            <a href="#portfolio">Store Support</a>
+        </nav>
+    </header>
+
+    <div class="main-header">
+        Customer Service Transition
+    </div>    
+
+    <div class="content-wrapper">
+
+        <div class="features-section">
+            <h4>Customer Service Documentation</h4>
+            <ul class="features-list">
+                <li onclick="showDetails('roles-responsibilities')">Roles & Responsibilities</li>
+                <li onclick="showDetails('agent-bonus-structure')">Agent Bonus Structure</li>
+                <li onclick="showDetails('supervisor-bonus-structure')">Supervisors Bonus Structure</li>
+                <li onclick="showDetails('customer-resolution-sop')">Customer Resolution SOP</li>
+                <li onclick="showDetails('refunds-sop')">Refunds SOP</li>
+                <li onclick="showDetails('coaching-audits-sop')">Coaching & Audits SOP</li>
+                <li onclick="showDetails('bbb-complaints-reviews-sop')">BBB Complaints & Reviews SOP</li>
+                <li onclick="showDetails('chargebacks-sop')">Chargebacks SOP</li>
+                <li onclick="showDetails('care-credit-claims-sop')">Care Credit Claims SOP</li>
+                <li onclick="showDetails('social-media-sop')">Social Media SOP</li>
+                <li onclick="showDetails('attendance-adherence-payroll-sop')">Attendance, Adherence & Payroll SOP</li>
+                <li onclick="showDetails('cr-list-transition-sop')">CR List Transition SOP</li> <!-- Added CR List Transition SOP -->
+            </ul>
+        </div>
+        
+        <div id="step-by-step-document" class="step-by-step-document">
+            <div class="document-header">
+                <img src="SO.png" alt="Logo">
+                <div id="document-title" class="document-title">IRIS Customer Service Documentation - Step-by-Step Guide</div>
+            </div>
+            <div id="step-content" class="step-content">
+                <div class="step-section" id="cr-list-transition-sop-section">
+                    <h4>CR List Transition SOP:</h4>
+                    <div class="step-section">
+                        <h4>List of CR to Centralized CC:</h4>
+                        <table class="cr-list-table">
+                            <thead>
+                                <tr>
+                                    <th>SID</th>
+                                    <th>First Last</th>
+                                    <th>Attendance %</th>
+                                    <th>Adh %</th>
+                                    <th>Calls Count</th>
+                                    <th>TicketToCall Ratio</th>
+                                    <th>AHT</th>
+                                    <th>ACW</th>
+                                    <th>Audits QA</th>
+                                    <th>Conversion %</th>
+                                    <th>Only QA</th>
+                                    <th>Survey to Call %</th>
+                                    <th>Resolution</th>
+                                    <th>Leads</th>
+                                    <th>Appts</th>
+                                    <th>Show Rate</th>
+                                    <th>Complete Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows with the data -->
+                                <tr>
+                                    <td>SID2346</td>
+                                    <td>Ana Barrera</td>
+                                    <td>100.00%</td>
+                                    <td>93.94%</td>
+                                    <td>9312</td>
+                                    <td>5.71%</td>
+                                    <td>360.10</td>
+                                    <td>59.96</td>
+                                    <td>77</td>
+                                    <td>60.19%</td>
+                                    <td>73.10%</td>
+                                    <td>16.28%</td>
+                                    <td>93%</td>
+                                    <td>624</td>
+                                    <td>668</td>
+                                    <td>59.82%</td>
+                                    <td>58.30%</td>
+                                </tr>
+                                <tr>
+                                    <td>SID2298</td>
+                                    <td>Rosa Jara</td>
+                                    <td>100.00%</td>
+                                    <td>93.86%</td>
+                                    <td>13596</td>
+                                    <td>6.49%</td>
+                                    <td>288.29</td>
+                                    <td>47.62</td>
+                                    <td>85</td>
+                                    <td>30.05%</td>
+                                    <td>86.31%</td>
+                                    <td>13.07%</td>
+                                    <td>90%</td>
+                                    <td>2101</td>
+                                    <td>711</td>
+                                    <td>60.11%</td>
+                                    <td>58.70%</td>
+                                </tr>
+                                <!-- Additional rows as required -->
+                                <tr>
+                                    <td>SID2347</td>
+                                    <td>Guillermo Cuadra</td>
+                                    <td>99.89%</td>
+                                    <td>94.60%</td>
+                                    <td>10692</td>
+                                    <td>5.61%</td>
+                                    <td>349.30</td>
+                                    <td>44.11</td>
+                                    <td>78</td>
+                                    <td>46.98%</td>
+                                    <td>76.79%</td>
+                                    <td>11.99%</td>
+                                    <td>91%</td>
+                                    <td>782</td>
+                                    <td>533</td>
+                                    <td>65.32%</td>
+                                    <td>63.39%</td>
+                                </tr>
+                                <tr>
+                                    <td>SID2047</td>
+                                    <td>David Sanchez</td>
+                                    <td>92.62%</td>
+                                    <td>93.17%</td>
+                                    <td>12298</td>
+                                    <td>5.10%</td>
+                                    <td>272.68</td>
+                                    <td>30.55</td>
+                                    <td>74</td>
+                                    <td>64.14%</td>
+                                    <td>91.51%</td>
+                                    <td>20.85%</td>
+                                    <td>91%</td>
+                                    <td>819</td>
+                                    <td>740</td>
+                                    <td>56.85%</td>
+                                    <td>55.62%</td>
+                                </tr>
+                                <!-- Add the remaining rows here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Other sections like List to Relocate, List to Operations can follow the same structure if needed -->
+                </div>
+            </div>
+        </div>
+
+        <div id="pending-items" class="pending-items">
+            <div class="document-header">
+                <img src="SO.png" alt="Logo">
+                <div class="document-title">Projects Assigned</div>
+            </div>
+            <table class="pending-items-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Brief Description</th>
+                        <th>Priority</th>
+                        <th>Open Date</th>
+                    </tr>
+                </thead>
+                <tbody id="pending-items-content">
+
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button onclick="addPendingItem()">Add Project</button>
+                <button onclick="removePendingItem()">Remove Last Project</button>
+                <button onclick="exportToExcel()">Export to Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Customer Service Transition</p>
+    </footer>
+
+    <script>
+        const items = [
+            { name: 'Store Direct Calls', description: 'Determine % customer calling vs. stores calling', priority: 'Medium', date: '2024-08-12'},
+            { name: 'Store Calls In/Off Hours', description: 'Determine % store calls during/outside business hours', priority: 'Medium', date: '2024-08-01'},
+            { name: 'RingCentral Store 0', description: 'RingCentral should not register any call under Store 0', priority: 'Medium', date: '2024-08-06'},
+            { name: 'IVR Module DMA Calls', description: 'Prompt to enter zipcode when calling to DMA Number', priority: 'High', date: '2024-08-15'},
+            { name: 'Customer Service QA site', description: 'Launch New QA Site Revamped', priority: 'High', date: '2024-08-01'},
+            { name: 'Store Bounce to CC - Franchise', description: 'All franchise stores should bounce to CC', priority: 'High', date: '2024-01-01'},
+            { name: 'IVR Quality Check', description: 'Assess further enhancements for IVR Experience based on competitors', priority: 'High', date: '2024-08-04'},
+
+        ];
+
+        function renderPendingItems() {
+            const pendingItemsContent = document.getElementById('pending-items-content');
+            pendingItemsContent.innerHTML = items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.description}</td>
+                    <td>${item.priority}</td>
+                    <td>${item.date}</td>                </tr>
+            `).join('');
+        }
+
+        function showPendingItems() {
+            const stepByStepDocument = document.getElementById('step-by-step-document');
+            const pendingItemsSection = document.getElementById('pending-items');
+
+            renderPendingItems();
+            stepByStepDocument.style.display = 'none';
+            pendingItemsSection.style.display = 'block';
+        }
+
+        function addPendingItem() {
+            const newItem = {
+                name: `New Project ${items.length + 1}`,
+                description: 'Description of the new project',
+                priority: 'Medium',
+                date: new Date().toISOString().split('T')[0],
+                url: 'https://example.com/new-project'
+            };
+            items.push(newItem);
+            renderPendingItems();
+        }
+
+        function removePendingItem() {
+            items.pop();
+            renderPendingItems();
+        }
+
+        function exportToExcel() {
+            const table = document.querySelector('.pending-items-table');
+            const tableHTML = table.outerHTML.replace(/ /g, '%20');
+
+            const filename = 'projects_assigned.xls';
+            const downloadLink = document.createElement('a');
+
+            document.body.appendChild(downloadLink);
+            downloadLink.href = 'data:application/vnd.ms-excel,' + tableHTML;
+            downloadLink.download = filename;
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+
+        function showDetails(feature) {
+            const stepByStepDocument = document.getElementById('step-by-step-document');
+            const pendingItemsSection = document.getElementById('pending-items');
+            const stepContent = document.getElementById('step-content');
+            const documentTitle = document.getElementById('document-title');
+
+            documentTitle.textContent = `Customer Service Documentation - ${feature.charAt(0).toUpperCase() + feature.slice(1)} Guide`;
+
+            stepContent.innerHTML = '';
+
+            if (feature === 'roles-responsibilities') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Roles & Responsibilities:</h4>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Description</th>
+                                    <th>Owner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Refunds over 50%</td>
+                                    <td>Stores reaching out to push refund in the system when over 50%.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Social Media</td>
+                                    <td>Oversee social media workload completion and scripts management.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Lab Ticket Support</td>
+                                    <td>Support Haltom City with Order Status Tickets.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Online Orders – Place an Order</td>
+                                    <td>Provide Assistance to place an order online.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Contact Lens Order – Store Only</td>
+                                    <td>Provide Assistance to place a contact lens order.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Chargebacks</td>
+                                    <td>Oversee chargebacks completion.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>BBB Complaints & Reviews</td>
+                                    <td>Oversee BBB disputes responses.</td>
+                                    <td>Jairo Reyes</td>
+                                </tr>
+                                <tr>
+                                    <td>Daily ServiceNow File Export</td>
+                                    <td>Export and import CSV to feed Customer Resolution.</td>
+                                    <td>Opener Supervisor</td>
+                                </tr>
+                                <tr>
+                                    <td>Care Credit Claims</td>
+                                    <td>Oversee disputes submitted through Care Credit.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Resolution Open Tickets</td>
+                                    <td>Follow up on Open Tickets for resolution purposes.</td>
+                                    <td>Rose Flores</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Resolution - Corporate</td>
+                                    <td>Back-end setup and maintenance.</td>
+                                    <td>Erick Jimenez</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Resolution - Franchise</td>
+                                    <td>Back-end setup and maintenance.</td>
+                                    <td>Jairo Reyes</td>
+                                </tr>
+                                <tr>
+                                    <td>Transportation</td>
+                                    <td>Submit weekly transportation.</td>
+                                    <td>All Supervisors</td>
+                                </tr>
+                                <tr>
+                                    <td>Coaching & Audits</td>
+                                    <td>Complete 3 audits a week + 1 coaching session.</td>
+                                    <td>All Supervisors</td>
+                                </tr>
+                                <tr>
+                                    <td>Stats Review</td>
+                                    <td>Complete 1 Stats Review Session a week.</td>
+                                    <td>All Supervisors</td>
+                                </tr>
+                                <tr>
+                                    <td>Resolution Ticket Audits</td>
+                                    <td>Audit tickets created by IBCS Agents (5x agent a week).</td>
+                                    <td>Erick Jimenez</td>
+                                </tr>
+                                <tr>
+                                    <td>Attendance & Adherence Review</td>
+                                    <td>Oversee Attendance & Adherence Outliers and report fixes to WFM.</td>
+                                    <td>All Supervisors</td>
+                                </tr>
+                                <tr>
+                                    <td>Payroll Review</td>
+                                    <td>Oversee team member payroll biweekly.</td>
+                                    <td>All Supervisors</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (feature === 'agent-bonus-structure') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Agent Bonus Structure:</h4>
+                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for supervisors:</p>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>KPI</th>
+                                    <th>Weight</th>
+                                    <th>Structure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QA</td>
+                                    <td>$30</td>
+                                    <td>
+                                        >= 90% = $30<br>
+                                        >= 87.5% &lt; 89.99% = $28<br>
+                                        >= 85% &lt; 87.49% = $24<br>
+                                        >= 82.5% &lt; 84.99% = $22<br>
+                                        >= 80% &lt; 82.49% = $20
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CSAT Survey to Call</td>
+                                    <td>$20</td>
+                                    <td>
+                                        >= 20% = $20<br>
+                                        >= 18% &lt; 19.99% = $18<br>
+                                        >= 16% &lt; 17.99% = $15<br>
+                                        >= 13% &lt; 15.99% = $10
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CSAT Resolution</td>
+                                    <td>$30</td>
+                                    <td>
+                                        >= 90% = $30<br>
+                                        >= 86% &lt; 88.99% = $28<br>
+                                        >= 83% &lt; 85.99% = $25<br>
+                                        >= 80% &lt; 82.99% = $20
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>AHT</td>
+                                    <td>$20</td>
+                                    <td>
+                                        &lt;= 239 = $20<br>
+                                        &lt;= 240 &lt; 249.99 = $15<br>
+                                        &lt;= 250 &lt; 259.99 = $13<br>
+                                        &lt;= 260 &lt; 280 = $10
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Total</td>
+                                    <td>100%</</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            + $50 attendance bonus if logins at 95%<br>
+                            **Login hours must be at 98% to qualify for bonus.<br>
+                            **Adherence must be at 95% to qualify for bonus.<br>
+                            **AHT Payout requires min 80% QA to pass.
+                        </p>
+                    </div>
+                `;
+            } else if (feature === 'supervisor-bonus-structure') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Supervisors Bonus Structure:</h4>
+                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for supervisors:</p>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>KPI</th>
+                                    <th>Weight</th>
+                                    <th>Target</th>
+                                    <th>Structure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QA</td>
+                                    <td>20%</</td>
+                                    <td>85%</</td>
+                                    <td>If less than 85%, then 50% total payout.</td>
+                                </tr>
+                                <tr>
+                                    <td>CSAT Survey to Call</td>
+                                    <td>20%</</td>
+                                    <td>20%</</td>
+                                    <td>If less than target, then percentage from total times weight.</td>
+                                </tr>
+                                <tr>
+                                    <td>CSAT Resolution</td>
+                                    <td>40%</</td>
+                                    <td>90%</</td>
+                                    <td>If less than target, then percentage from total times weight.</td>
+                                </tr>
+                                <tr>
+                                    <td>Audits</td>
+                                    <td>20%</</td>
+                                    <td>90%</</td>
+                                    <td>If less than 80%, then zero payout.</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td>100%</</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            **Audits Expectation: To audit 3 calls a week per team member.
+                        </p>
+                    </div>
+                `;
+            } else if (feature === 'customer-resolution-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Customer Resolution SOP:</h4>
+                        <p>The process in place to create and escalate tickets to the stores when customer service teams are unable to resolve the issue during the call:</p>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Call Back Request</td>
+                                    <td>Agent tried to contact store but no answer, advise patient to call back within 48 hours.</td>
+                                </tr>
+                                <tr>
+                                    <td>Order Status</td>
+                                    <td>Agent couldn't find order status information to provide to the patient and needs to contact store for more information but store didn't answer.</td>
+                                </tr>
+                                <tr>
+                                    <td>Compensation</td>
+                                    <td>Patient requesting compensation due to a bad experience at store, agent couldn't connect with store and logs a ticket.</td>
+                                </tr>
+                                <tr>
+                                    <td>Refund Request Status</td>
+                                    <td>Patient called asking for a refund due to bad experience, wrong RX, etc. Agent validates if inside/outside 30 days satisfaction policy, if within 30 days, offers a recheck, if outside 30 days attempts to connect to store to warm transfer patient. Every time there is a refund request for new/existing, the agent must log a ticket.</td>
+                                </tr>
+                                <tr>
+                                    <td>Place an Order</td>
+                                    <td>Patients calling to place an order for GL/CL. Agent needs to contact store but if no answer, then logs a ticket for follow-up from the store.</td>
+                                </tr>
+                                <tr>
+                                    <td>Make a Payment</td>
+                                    <td>Patients calling to make a payment on outstanding balance. Agent needs to contact store but if no answer, then logs a ticket for follow-up from the store.</td>
+                                </tr>
+                                <tr>
+                                    <td>Franchise Escalation</td>
+                                    <td>Patients calling to complain about a bad experience at a franchise location, team attempts to connect to store but is unable to and creates a ticket for follow-up from the store and RVP.</td>
+                                </tr>
+                                <tr>
+                                    <td>Order Cancellation</td>
+                                    <td>Patients calling to cancel an order, agent creates a ticket and transfers the call to a support team member for retention efforts.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>Customer Service creates a ticket when unable to provide resolution.</li>
+                            <li>Tickets live in the customer service resolution site, and each store has an individual view. These can be accessed by visiting the customer resolution SharePoint site.</li>
+                            <li>Once there, stores can respond to the tickets using the resolution bot in the bottom right corner.</li>
+                            <li>These updates will then go to the support team, who will validate if these lead to closing the ticket or need more information to get it resolved.</li>
+                            <li>Stores are responsible for reviewing their open tickets every day to ensure nothing goes beyond 5 business days. If so, the support team will follow up to help drive resolution to the patient.</li>
+                        </ul>
+                        <h4>Escalation Process:</h4>
+                        <p>If there is no response after 15 days, the OM should send a note to RVPs for both corporate and franchise stores asking for a resolution of the issue.</p>
+                    </div>
+                `;
+            } else if (feature === 'refunds-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Refunds SOP:</h4>
+                        <p>The process in place for handling refund requests and updates:</p>
+                        <h4>New Refund Requests:</h4>
+                        <ul>
+                            <li>Patient calls customer service asking for a refund.</li>
+                            <li>Customer service validates if the request is within 30 days or outside 30 days.</li>
+                            <li>If within 30 days:
+                                <ul>
+                                    <li>Customer service will offer to book an appointment for a recheck and try to save the sale.</li>
+                                    <li>If the patient declines, customer service creates a ticket and attempts to connect to the store.</li>
+                                    <li>If unable to contact the store, the patient is advised of a 48-business-hour resolution timeframe from the store.</li>
+                                </ul>
+                            </li>
+                            <li>If outside 30 days:
+                                <ul>
+                                    <li>Customer service educates the patient on the 30 days satisfaction policy.</li>
+                                    <li>If the patient insists on a refund, a ticket is created and an attempt to warm transfer the patient to the store is made.</li>
+                                    <li>If unable to connect, the patient is advised of a 48-business-hour resolution timeframe from the store.</li>
+                                </ul>
+                            </li>
+                            <li>Stores are notified via the resolution site and are responsible for providing resolution.</li>
+                        </ul>
+                        <h4>Update Requests on Existing Refunds:</h4>
+                        <ul>
+                            <li>Team member researches the patient's profile and validates if new updates are available.</li>
+                            <li>The team member locates the ticket reference number for the request.</li>
+                            <li>If no updates are available, an attempt to warm transfer the patient to the store is made.</li>
+                            <li>If unable to connect, a note is added to the ticket/profile indicating that the patient has called.</li>
+                            <li>The store is notified via the resolution site so that they can provide resolution to the patient.</li>
+                        </ul>
+                        <h4>Escalated Scenarios:</h4>
+                        <ul>
+                            <li>If the patient calls because the store refused to provide a refund, a ticket is created.</li>
+                            <li>The OM follows up with the RVP to ensure resolution is delivered to the patient.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (feature === 'coaching-audits-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Coaching & Audits SOP:</h4>
+                        <p>The Coaching and Audit SOP outlines the process for conducting regular audits and coaching sessions to improve customer experience and develop team members' skills. Supervisors are responsible for conducting 3 audits per team member per week, plus 1 coaching session.</p>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>Supervisors must provide a weekly audit & coaching plan to the OM outlining the planned dates for audits and coaching.</li>
+                            <li>The 3 audits should not be performed on the same day for a team member; they should be spread throughout the week.</li>
+                            <li>Coaching sessions should focus on developing agents' skill sets by addressing the main obstacles that prevented agents from delivering best-in-class customer service experiences.</li>
+                            <li>All coaching must be documented using the coaching app.</li>
+                            <li>The coaching plan should be sent every Wednesday to WFM for mapping, and sessions should not exceed 30 minutes.</li>
+                        </ul>
+                        <h4>Audit Strategy:</h4>
+                        <p>The audit strategy will be based on OM direction to improve efficiency in operations.</p>
+                    </div>
+                `;
+            } else if (feature === 'bbb-complaints-reviews-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>BBB Complaints & Reviews SOP:</h4>
+                        <p>Customer Service oversees the incoming transaction disputes that come through the Better Business Bureau (BBB), Chargebacks, and Care Credit Claims.</p>
+                        <h4>Process:</h4>
+                        <h5>BBB:</h5>
+                        <ul>
+                            <li>Customers can either submit a business review or complaint through BBB.</li>
+                            <li>BBB will review and notify us via email about the new review/complaint filed against our brand and will outline the due date to resolve (not responding on time leads to a downgrade in BBB rating).</li>
+                            <li>Team Member (Jairo Reyes) reviews the BBB webpage every day to follow up on existing and/or new reviews/complaints.</li>
+                            <li>If a new BBB review/complaint is filed, we will respond through the platform, acknowledging the inconvenience this may have caused and assuring them we are committed to helping resolve the situation.</li>
+                            <li>We will research everything related to the transaction/experience the patient is escalating.</li>
+                            <li>After collecting all information, we will create a BBB ticket so that the store can be in the loop and provide an answer within 48 hours. We always give a sooner due date than the actual one so that stores can have a greater sense of urgency.</li>
+                            <li>Every time we receive an update from stores, we will post it on the BBB webpage and wait to see if the patient accepts the resolution or not.</li>
+                            <li>When patients don't accept the resolution, we must ensure the resolution provided was indeed the best we could do. If so, we can partner with BBB directly to let them know we did everything in our power.</li>
+                        </ul>
+                        <h5>Reviews:</h5>
+                        <ul>
+                            <li>Reviews do not affect the rating itself but reflect on the company BBB profile.</li>
+                            <li>We are committed to responding to all incoming reviews and researching the patient in the system.</li>
+                            <li>We will create a BBB ticket to notify the store and ensure we can help drive resolution for the patient.</li>
+                            <li>Reviews only need to be responded to once. We only need to ensure that patients are taken care of by following up with the store.</li>
+                        </ul>
+                        <h4>Escalation Process:</h4>
+                        <p>If we are not getting responses from the store and the due date is approaching (1-2 days left), we will escalate this to the RVP for either corporate or franchise locations to ensure we deliver a resolution.</p>
+                    </div>
+                `;
+            } else if (feature === 'chargebacks-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Chargebacks SOP:</h4>
+                        <p>The process used to support the dispute process of incoming chargebacks:</p>
+                        <h4>Purpose:</h4>
+                        <p>This document's objective is to describe the process used to support the dispute process of incoming chargebacks.</p>
+                        <h4>Expectations:</h4>
+                        <p>The support team is responsible for the reception, communication, and resolution of incoming chargebacks whenever the cardholder is disputing charges through their bank.</p>
+                        <h4>Policy / Procedure:</h4>
+                        <ul>
+                            <li>Access to Business Track.</li>
+                            <li>Click on Merchant Login.</li>
+                            <li>Login for: MyEyelab and Framegenie.</li>
+                            <li>Username: Cl.beckl63 Password:Stanton2024.</li>
+                            <li>Stanton Optical:</li>
+                            <li>Username: Cl.beckl64 Password:Stanton2024!</li>
+                            <li>Security code is going to be sent to the following email address: roflores@nowoptics.com.</li>
+                            <li>Click on Dispute Management > Queues > All Chargebacks/Exception.</li>
+                            <li>Click on each of the disputes showing from top to bottom.</li>
+                            <li>Copy the Merchant# (Needs to be copied after the 0) and look for the store in Stanton Optical/MyEyelab Merchant Accounts.</li>
+                            <li>Once you locate the account, go to ZEUS and click on Report > CC Report.</li>
+                            <li>Filter the day and based on the information of the dispute, search for the card type and the amount.</li>
+                            <li>If you find the transaction, locate the PT ID and check the order.</li>
+                            <li>Now complete the following steps to compile the needed information to communicate with the stores:</li>
+                            <li>Collect all details from the dispute and set the raw data in the following file.</li>
+                            <li>Create a ticket under: Customer Issues – Chargebacks.</li>
+                            <li>Upload the information on Tickets Workload.</li>
+                            <li>Upload the information on the Email Automation.</li>
+                            <li>Follow up and close after you have the solution.</li>
+                        </ul>
+                        <h4>In case that the store did not answer before the due date:</h4>
+                        <ul>
+                            <li>You can proceed to accept the chargeback.</li>
+                            <li>Click on the dispute > actions > Accept Chargeback > Submit action.</li>
+                            <li>If the store resolution is to decline the chargeback:</li>
+                            <li>Create a letter notifying the reason the dispute is being declined Chargeback Letter.</li>
+                            <li>Go to Zeus > Orders and search for the receipt of the purchase that the customer is disputing. Download and save it as a PDF.</li>
+                            <li>Go to Zeus > Take a screenshot of the dispensed log and save it as a PDF. (In case it’s needed)</li>
+                            <li>Go to Clover > Download the refund receipt and save it as PDF. (In case it’s needed)</li>
+                            <li>Then go to Actions > Dispute/Reserve Chargeback > Specify Supporting Documentations Being Uploaded > Upload the documents (All of them need to be PDF) > add a note which is the last paragraph of the letter.</li>
+                        </ul>
+                        <h4>Note:</h4>
+                        <p>In case this is Pre-Arbitration, we need to accept the chargeback.</p>
+                    </div>
+                `;
+            } else if (feature === 'care-credit-claims-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Care Credit Claims SOP:</h4>
+                        <p>Care Credit is a "buy now, pay later" option that patients can use at any of our corporate stores. Patients may dispute transactions directly through Care Credit, triggering the beginning of a claim:</p>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>We are notified about the Care Credit complaint via email, and it also shows up in the Care Credit disputes portal. Every Care Credit comes with a due date. Not responding on time may cause the transaction to be deducted from our account and refunded to the patient.</li>
+                            <li>The team accesses the Care Credit portal and looks for the option "Disputes Documentation" in the bar menu.</li>
+                            <li>The platform will display a dashboard with existing/new Care Credit claims.</li>
+                            <li>The team reviews the claim and notifies the store via email with all relevant information gathered.</li>
+                            <li>The goal of the investigation is to prove that the patient was aware and accepted all terms of the transaction with us. We often look for sales drafts, dispense logs, etc.</li>
+                            <li>The team needs to redact a letter to Care Credit outlining the investigation completed and attaching all relevant proof of the transaction.</li>
+                            <li>The team will wait to learn whether or not the claim is won by the company.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (feature === 'social-media-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Social Media SOP:</h4>
+                        <p>Customer service team provides support to the company's social media brand by overseeing the incoming reviews through Google Business, Yelp, Facebook, Instagram, and the private messages that come through either Facebook or Messenger. This is all done through a webpage called "Sprout" that allows the team to have all in one place.</p>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>There are two members of the team that are reviewing Sprout throughout the day.</li>
+                            <li>They focus on GMB, Yelp Reviews, and private chats for Facebook and Instagram.</li>
+                            <li>The team accesses Sprout every day and reviews the "Smart Inbox" section to work towards the batch of work centralized there.</li>
+                            <li>The team receives support from Marketing with scripts that are periodically reviewed and revamped to ensure we are providing excellent customer service.</li>
+                            <li>The team is responsible for responding to all reviews and chats incoming. The goal is to do it same-day every time.</li>
+                            <li>When dealing with complaints, the team will research and create a complaint ticket for the store the customer visited to ensure we can take action to help alleviate the inconveniences.</li>
+                            <li>Stores are notified via the resolution dashboard when a new ticket is created.</li>
+                            <li>The team documents any relevant information in the patient memo section and continues to follow up on open tickets until they are closed.</li>
+                        </ul>
+                        <h4>Escalation Process:</h4>
+                        <p>When escalations are critical—meaning the patient doesn't want to speak to the store, demands resolution immediately due to long wait times, etc.—these tickets are escalated to the supervisor to follow up directly with the Regional Manager/Regional Vice President for either franchise or corporate locations.</p>
+                    </div>
+                `;
+            } else if (feature === 'attendance-adherence-payroll-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Attendance, Adherence & Payroll SOP:</h4>
+                        <p>Customer service has key metrics for measuring attendance and adherence to deliver a highly efficient operation. This includes login hours, payroll delivery, schedule adherence, and ensuring everyone is doing what they are supposed to.</p>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>This is overseen by all supervisors.</li>
+                            <li>Every day, supervisors check the previous day's attendance and adherence to ensure we are capturing/reporting system issues, AUX abusage, payroll corrections, and identifying repeat offenders.</li>
+                            <li>This data is available at a macro level through the performance ranking and at a micro level in the BPO Production dashboard.</li>
+                            <li>Team members are allowed a 5-minute bathroom break every day.</li>
+                            <li>Supervisors must review their team's performance every day to ensure smooth operation.</li>
+                            <li>Attendance management is crucial to ensure discipline is top of mind in the department. Tardiness must be managed closely to address behaviors on the go.</li>
+                        </ul>
+                        <h4>Escalation Process:</h4>
+                        <p>When issues arise with payroll and are outside the due date, supervisors must submit a payroll correction to ensure agents are not deducted unnecessarily.</p>
+                    </div>
+                `;
+            } else if (feature === 'cr-list-transition-sop') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>CR List Transition SOP:</h4>
+                        <p>This section outlines the standard operating procedure for transitioning the Customer Resolution (CR) list to the new system.</p>
+                        <div class="step-section">
+                            <h4>List of CR to Centralized CC:</h4>
+                            <table class="cr-list-table">
+                                <thead>
+                                    <tr>
+                                        <th>SID</th>
+                                        <th>First Last</th>
+                                        <th>Attendance %</th>
+                                        <th>Adh %</th>
+                                        <th>Calls Count</th>
+                                        <th>TicketToCall Ratio</th>
+                                        <th>AHT</th>
+                                        <th>ACW</th>
+                                        <th>Audits QA</th>
+                                        <th>Conversion %</th>
+                                        <th>Only QA</th>
+                                        <th>Survey to Call %</th>
+                                        <th>Resolution</th>
+                                        <th>Leads</th>
+                                        <th>Appts</th>
+                                        <th>Show Rate</th>
+                                        <th>Complete Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table rows with the data -->
+                                    <tr style="background-color: #d4f4dd;">
+                                        <td>SID2346</td>
+                                        <td>Ana Barrera</td>
+                                        <td>100.00%</td>
+                                        <td>93.94%</td>
+                                        <td>9312</td>
+                                        <td>5.71%</td>
+                                        <td>360.10</td>
+                                        <td>59.96</td>
+                                        <td>77</td>
+                                        <td>60.19%</td>
+                                        <td>73.10%</td>
+                                        <td>16.28%</td>
+                                        <td>93%</td>
+                                        <td>624</td>
+                                        <td>668</td>
+                                        <td>59.82%</td>
+                                        <td>58.30%</td>
+                                    </tr>
+                                    <tr style="background-color: #d4f4dd;">
+                                        <td>SID2298</td>
+                                        <td>Rosa Jara</td>
+                                        <td>100.00%</td>
+                                        <td>93.86%</td>
+                                        <td>13596</td>
+                                        <td>6.49%</td>
+                                        <td>288.29</td>
+                                        <td>47.62</td>
+                                        <td>85</td>
+                                        <td>30.05%</td>
+                                        <td>86.31%</td>
+                                        <td>13.07%</td>
+                                        <td>90%</td>
+                                        <td>2101</td>
+                                        <td>711</td>
+                                        <td>60.11%</td>
+                                        <td>58.70%</td>
+                                    </tr>
+                                    <!-- Additional rows as required -->
+                                    <tr style="background-color: #d4f4dd;">
+                                        <td>SID2347</td>
+                                        <td>Guillermo Cuadra</td>
+                                        <td>99.89%</td>
+                                        <td>94.60%</td>
+                                        <td>10692</td>
+                                        <td>5.61%</td>
+                                        <td>349.30</td>
+                                        <td>44.11</td>
+                                        <td>78</td>
+                                        <td>46.98%</td>
+                                        <td>76.79%</td>
+                                        <td>11.99%</td>
+                                        <td>91%</td>
+                                        <td>782</td>
+                                        <td>533</td>
+                                        <td>65.32%</td>
+                                        <td>63.39%</td>
+                                    </tr>
+                                    <tr style="background-color: #d4f4dd;">
+                                        <td>SID2047</td>
+                                        <td>David Sanchez</td>
+                                        <td>92.62%</td>
+                                        <td>93.17%</td>
+                                        <td>12298</td>
+                                        <td>5.10%</td>
+                                        <td>272.68</td>
+                                        <td>30.55</td>
+                                        <td>74</td>
+                                        <td>64.14%</td>
+                                        <td>91.51%</td>
+                                        <td>20.85%</td>
+                                        <td>91%</td>
+                                        <td>819</td>
+                                        <td>740</td>
+                                        <td>56.85%</td>
+                                        <td>55.62%</td>
+                                    </tr>
+                                    <tr style="background-color: #d4f4dd;">
+    <td>SID2242</td>
+    <td>Brian Vivas</td>
+    <td>100.00%</td>
+    <td>95.85%</td>
+    <td>15207</td>
+    <td>5.75%</td>
+    <td>256.78</td>
+    <td>39.61</td>
+    <td>83</td>
+    <td>76.72%</td>
+    <td>94.39%</td>
+    <td>11.89%</td>
+    <td>87%</td>
+    <td>671</td>
+    <td>910</td>
+    <td>57.98%</td>
+    <td>56.22%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2100</td>
+    <td>Rebeca Alvear</td>
+    <td>100.00%</td>
+    <td>95.98%</td>
+    <td>15317</td>
+    <td>6.44%</td>
+    <td>234.52</td>
+    <td>51.79</td>
+    <td>78</td>
+    <td>36.34%</td>
+    <td>72.68%</td>
+    <td>13.21%</td>
+    <td>86%</td>
+    <td>1732</td>
+    <td>725</td>
+    <td>62.85%</td>
+    <td>60.77%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2238</td>
+    <td>Yader Ñamendy</td>
+    <td>100.00%</td>
+    <td>94.55%</td>
+    <td>13696</td>
+    <td>7.94%</td>
+    <td>250.61</td>
+    <td>33.79</td>
+    <td>79</td>
+    <td>66.28%</td>
+    <td>87.05%</td>
+    <td>12.04%</td>
+    <td>86%</td>
+    <td>731</td>
+    <td>727</td>
+    <td>55.60%</td>
+    <td>54.08%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1441</td>
+    <td>Danilo Lopez</td>
+    <td>100.00%</td>
+    <td>97.78%</td>
+    <td>17144</td>
+    <td>4.37%</td>
+    <td>230.04</td>
+    <td>18.75</td>
+    <td>79</td>
+    <td>95.58%</td>
+    <td>93.66%</td>
+    <td>10.78%</td>
+    <td>87%</td>
+    <td>1080</td>
+    <td>1148</td>
+    <td>58.81%</td>
+    <td>57.14%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2153</td>
+    <td>Nahiris Mercado</td>
+    <td>100.00%</td>
+    <td>97.09%</td>
+    <td>15543</td>
+    <td>4.04%</td>
+    <td>217.56</td>
+    <td>37.77</td>
+    <td>77</td>
+    <td>52.44%</td>
+    <td>87.74%</td>
+    <td>9.55%</td>
+    <td>85%</td>
+    <td>1401</td>
+    <td>737</td>
+    <td>57.35%</td>
+    <td>55.47%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2354</td>
+    <td>Gloria Maldonado</td>
+    <td>100.00%</td>
+    <td>95.45%</td>
+    <td>12007</td>
+    <td>4.04%</td>
+    <td>293.97</td>
+    <td>48.53</td>
+    <td>78</td>
+    <td>63.24%</td>
+    <td>67.09%</td>
+    <td>5.85%</td>
+    <td>78%</td>
+    <td>982</td>
+    <td>685</td>
+    <td>61.33%</td>
+    <td>58.96%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2151</td>
+    <td>Martina Larios</td>
+    <td>65.47%</td>
+    <td>88.76%</td>
+    <td>8802</td>
+    <td>4.83%</td>
+    <td>250.27</td>
+    <td>28.09</td>
+    <td>53</td>
+    <td>74.02%</td>
+    <td>88.58%</td>
+    <td>11.82%</td>
+    <td>85%</td>
+    <td>534</td>
+    <td>490</td>
+    <td>55.69%</td>
+    <td>53.66%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2236</td>
+    <td>Jonathan Duarte</td>
+    <td>100.00%</td>
+    <td>92.96%</td>
+    <td>11532</td>
+    <td>6.65%</td>
+    <td>269.47</td>
+    <td>52.50</td>
+    <td>75</td>
+    <td>50.33%</td>
+    <td>88.67%</td>
+    <td>9.74%</td>
+    <td>78%</td>
+    <td>601</td>
+    <td>560</td>
+    <td>57.63%</td>
+    <td>56.73%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2291</td>
+    <td>Concepción Gutierrez</td>
+    <td>100.00%</td>
+    <td>96.20%</td>
+    <td>15948</td>
+    <td>4.72%</td>
+    <td>224.55</td>
+    <td>32.23</td>
+    <td>86</td>
+    <td>49.17%</td>
+    <td>82.01%</td>
+    <td>14.39%</td>
+    <td>74%</td>
+    <td>1276</td>
+    <td>768</td>
+    <td>55.25%</td>
+    <td>53.70%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID2270</td>
+    <td>Arelly Marenco</td>
+    <td>100.00%</td>
+    <td>95.33%</td>
+    <td>8020</td>
+    <td>4.95%</td>
+    <td>320.04</td>
+    <td>17.75</td>
+    <td>44</td>
+    <td>53.57%</td>
+    <td>75.70%</td>
+    <td>12.54%</td>
+    <td>91%</td>
+    <td>728</td>
+    <td>464</td>
+    <td>61.59%</td>
+    <td>59.87%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1573</td>
+    <td>Cesar Arana</td>
+    <td>100.00%</td>
+    <td>95.77%</td>
+    <td>11123</td>
+    <td>5.46%</td>
+    <td>227.19</td>
+    <td>34.37</td>
+    <td>42</td>
+    <td>77.27%</td>
+    <td>95.40%</td>
+    <td>13.96%</td>
+    <td>90%</td>
+    <td>770</td>
+    <td>640</td>
+    <td>64.66%</td>
+    <td>62.81%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1957</td>
+    <td>Michel Sandoval</td>
+    <td>100.00%</td>
+    <td>95.25%</td>
+    <td>11169</td>
+    <td>5.87%</td>
+    <td>255.72</td>
+    <td>26.02</td>
+    <td>44</td>
+    <td>68.44%</td>
+    <td>93.43%</td>
+    <td>15.16%</td>
+    <td>91%</td>
+    <td>924</td>
+    <td>745</td>
+    <td>63.66%</td>
+    <td>61.37%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1761</td>
+    <td>Nemax Navas</td>
+    <td>100.00%</td>
+    <td>96.78%</td>
+    <td>4866</td>
+    <td>14.10%</td>
+    <td>258.90</td>
+    <td>42.17</td>
+    <td>44</td>
+    <td>61.60%</td>
+    <td>88.55%</td>
+    <td>10.99%</td>
+    <td>86%</td>
+    <td>231</td>
+    <td>568</td>
+    <td>59.15%</td>
+    <td>57.22%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1765</td>
+    <td>Jonny Gago</td>
+    <td>100.00%</td>
+    <td>97.36%</td>
+    <td>4252</td>
+    <td>3.25%</td>
+    <td>227.22</td>
+    <td>32.11</td>
+    <td>51.15%</td>
+    <td>1.39%</td>
+    <td>80%</td>
+    <td>175</td>
+    <td>306</td>
+    <td>78.18%</td>
+    <td>76.55%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1881</td>
+    <td>Yadira Gomez</td>
+    <td>100.00%</td>
+    <td>97.78%</td>
+    <td>2447</td>
+    <td>30.28%</td>
+    <td>208.75</td>
+    <td>20.28</td>
+    <td>81.82%</td>
+    <td>2.26%</td>
+    <td>70%</td>
+    <td>110</td>
+    <td>118</td>
+    <td>61.40%</td>
+    <td>60.53%</td>
+</tr>
+<tr style="background-color: #d4f4dd;">
+    <td>SID1526</td>
+    <td>Alira Lam</td>
+    <td>100.00%</td>
+    <td>96.12%</td>
+    <td>2541</td>
+    <td>32.00%</td>
+    <td>216.33</td>
+    <td>51.28</td>
+    <td>9.76%</td>
+    <td>0.46%</td>
+    <td>30%</td>
+    <td>42</td>
+    <td>176</td>
+    <td>87.43%</td>
+    <td>86.29%</td>
+</tr>
+<tr>
+    <td>SID2461</td>
+    <td>Alejandro Cisneros</td>
+    <td>99.05%</td>
+    <td>96.17%</td>
+    <td>2018</td>
+    <td>7.14%</td>
+    <td>315.24</td>
+    <td>63.26</td>
+    <td>11</td>
+    <td>57.27%</td>
+    <td>91.18%</td>
+    <td>14.17%</td>
+    <td>93%</td>
+    <td>221</td>
+    <td>168</td>
+    <td>63.19%</td>
+    <td>61.35%</td>
+</tr>
+<tr>
+    <td>SID2462</td>
+    <td>Yamil Saenz</td>
+    <td>99.74%</td>
+    <td>93.55%</td>
+    <td>1923</td>
+    <td>7.12%</td>
+    <td>312.30</td>
+    <td>53.40</td>
+    <td>12</td>
+    <td>58.38%</td>
+    <td>83.00%</td>
+    <td>16.43%</td>
+    <td>91%</td>
+    <td>197</td>
+    <td>151</td>
+    <td>54.11%</td>
+    <td>52.05%</td>
+</tr>
+<tr>
+    <td>SID2355</td>
+    <td>Tishelly Mendieta</td>
+    <td>100.00%</td>
+    <td>94.29%</td>
+    <td>9762</td>
+    <td>6.17%</td>
+    <td>354.45</td>
+    <td>60.89</td>
+    <td>75</td>
+    <td>27.21%</td>
+    <td>75.99%</td>
+    <td>9.65%</td>
+    <td>90%</td>
+    <td>1272</td>
+    <td>482</td>
+    <td>63.26%</td>
+    <td>62.00%</td>
+</tr>
+<tr>
+    <td>SID2490</td>
+    <td>Allison Perez</td>
+    <td>86.02%</td>
+    <td>78.24%</td>
+    <td>632</td>
+    <td>2.85%</td>
+    <td>276.56</td>
+    <td>38.26</td>
+    <td>4</td>
+    <td>60.00%</td>
+    <td>16.25%</td>
+    <td>12.03%</td>
+    <td>86%</td>
+    <td>61</td>
+    <td>31</td>
+    <td>43.48%</td>
+    <td>39.13%</td>
+</tr>
+<tr>
+    <td>SID2487</td>
+    <td>Bryan Carmona</td>
+    <td>94.49%</td>
+    <td>83.97%</td>
+    <td>686</td>
+    <td>2.92%</td>
+    <td>293.58</td>
+    <td>27.02</td>
+    <td>4</td>
+    <td>81.25%</td>
+    <td>51.25%</td>
+    <td>7.88%</td>
+    <td>87%</td>
+    <td>64</td>
+    <td>42</td>
+    <td>61.76%</td>
+    <td>61.76%</td>
+</tr>
+<tr>
+    <td>SID2364</td>
+    <td>Jose Rojas</td>
+    <td>99.82%</td>
+    <td>95.07%</td>
+    <td>9620</td>
+    <td>3.83%</td>
+    <td>332.49</td>
+    <td>72.49</td>
+    <td>75</td>
+    <td>68.53%</td>
+    <td>39.96%</td>
+    <td>5.36%</td>
+    <td>87%</td>
+    <td>566</td>
+    <td>352</td>
+    <td>63.08%</td>
+    <td>61.92%</td>
+</tr>
+<tr>
+    <td>SID2434</td>
+    <td>Roger Aleman</td>
+    <td>100.00%</td>
+    <td>93.87%</td>
+    <td>5738</td>
+    <td>4.55%</td>
+    <td>341.19</td>
+    <td>51.57</td>
+    <td>47</td>
+    <td>92.51%</td>
+    <td>68.64%</td>
+    <td>6.92%</td>
+    <td>84%</td>
+    <td>225</td>
+    <td>253</td>
+    <td>59.59%</td>
+    <td>57.55%</td>
+</tr>
+<tr>
+    <td>SID2488</td>
+    <td>Bryan Zelaya</td>
+    <td>100.00%</td>
+    <td>92.24%</td>
+    <td>846</td>
+    <td>2.96%</td>
+    <td>266.43</td>
+    <td>37.26</td>
+    <td>4</td>
+    <td>74.42%</td>
+    <td>44.50%</td>
+    <td>19.50%</td>
+    <td>83%</td>
+    <td>43</td>
+    <td>46</td>
+    <td>61.54%</td>
+    <td>58.97%</td>
+</tr>
+<tr>
+    <td>SID2435</td>
+    <td>Javier Reyes</td>
+    <td>98.47%</td>
+    <td>94.14%</td>
+    <td>6915</td>
+    <td>4.50%</td>
+    <td>262.86</td>
+    <td>59.76</td>
+    <td>47</td>
+    <td>47.89%</td>
+    <td>59.53%</td>
+    <td>7.84%</td>
+    <td>83%</td>
+    <td>453</td>
+    <td>275</td>
+    <td>60.59%</td>
+    <td>59.85%</td>
+</tr>
+<tr>
+    <td>SID2463</td>
+    <td>Javier Rodriguez</td>
+    <td>100.00%</td>
+    <td>91.34%</td>
+    <td>2013</td>
+    <td>5.07%</td>
+    <td>371.91</td>
+    <td>59.20</td>
+    <td>12</td>
+    <td>81.37%</td>
+    <td>51.42%</td>
+    <td>8.89%</td>
+    <td>85%</td>
+    <td>105</td>
+    <td>150</td>
+    <td>51.43%</td>
+    <td>51.43%</td>
+</tr>
+<tr>
+    <td>SID2485</td>
+    <td>Eliezer Martinez</td>
+    <td>92.75%</td>
+    <td>84.23%</td>
+    <td>571</td>
+    <td>5.78%</td>
+    <td>382.09</td>
+    <td>43.64</td>
+    <td>4</td>
+    <td>65.75%</td>
+    <td>57.25%</td>
+    <td>6.83%</td>
+    <td>87%</td>
+    <td>72</td>
+    <td>25</td>
+    <td>52.63%</td>
+    <td>52.63%</td>
+</tr>
+<tr>
+    <td>SID2438</td>
+    <td>Aura Urtecho</td>
+    <td>100.00%</td>
+    <td>92.22%</td>
+    <td>5664</td>
+    <td>7.36%</td>
+    <td>386.23</td>
+    <td>71.30</td>
+    <td>48</td>
+    <td>54.31%</td>
+    <td>64.54%</td>
+    <td>8.23%</td>
+    <td>84%</td>
+    <td>501</td>
+    <td>328</td>
+    <td>60.57%</td>
+    <td>59.94%</td>
+</tr>
+<tr>
+    <td>SID2239</td>
+    <td>Yader Davila</td>
+    <td>100.00%</td>
+    <td>94.22%</td>
+    <td>12185</td>
+    <td>9.43%</td>
+    <td>289.85</td>
+    <td>35.65</td>
+    <td>83</td>
+    <td>50.30%</td>
+    <td>88.55%</td>
+    <td>11.17%</td>
+    <td>86%</td>
+    <td>638</td>
+    <td>695</td>
+    <td>55.91%</td>
+    <td>54.90%</td>
+</tr>
+<tr>
+    <td>SID2489</td>
+    <td>Miguel Cortez</td>
+    <td>100.00%</td>
+    <td>93.66%</td>
+    <td>696</td>
+    <td>1.87%</td>
+    <td>339.79</td>
+    <td>32.34</td>
+    <td>4</td>
+    <td>100.00%</td>
+    <td>53.50%</td>
+    <td>7.48%</td>
+    <td>69%</td>
+    <td>24</td>
+    <td>44</td>
+    <td>48.72%</td>
+    <td>46.15%</td>
+</tr>
+<tr>
+    <td>SID2296</td>
+    <td>Nefi Lopez</td>
+    <td>100.00%</td>
+    <td>93.44%</td>
+    <td>16083</td>
+    <td>5.73%</td>
+    <td>240.60</td>
+    <td>43.05</td>
+    <td>85</td>
+    <td>88.81%</td>
+    <td>74.24%</td>
+    <td>12.99%</td>
+    <td>79%</td>
+    <td>718</td>
+    <td>729</td>
+    <td>56.31%</td>
+    <td>55.06%</td>
+</tr>
+<tr>
+    <td>SID2486</td>
+    <td>Anabell Ruiz</td>
+    <td>100.00%</td>
+    <td>91.38%</td>
+    <td>718</td>
+    <td>3.76%</td>
+    <td>319.07</td>
+    <td>31.07</td>
+    <td>4</td>
+    <td>42.00%</td>
+    <td>50.50%</td>
+    <td>14.48%</td>
+    <td>82%</td>
+    <td>151</td>
+    <td>56</td>
+    <td>60.42%</td>
+    <td>56.25%</td>
+</tr>
+<tr>
+    <td>SID2464</td>
+    <td>Leeanthony Tellez</td>
+    <td>100.00%</td>
+    <td>90.15%</td>
+    <td>2288</td>
+    <td>5.55%</td>
+    <td>307.18</td>
+    <td>58.14</td>
+    <td>12</td>
+    <td>98.94%</td>
+    <td>78.00%</td>
+    <td>7.12%</td>
+    <td>79%</td>
+    <td>94</td>
+    <td>115</td>
+    <td>55.96%</td>
+    <td>55.05%</td>
+</tr>
+<tr>
+    <td>SID2351</td>
+    <td>Carlos Romero</td>
+    <td>100.00%</td>
+    <td>92.06%</td>
+    <td>12940</td>
+    <td>1.90%</td>
+    <td>267.99</td>
+    <td>50.45</td>
+    <td>77</td>
+    <td>28.57%</td>
+    <td>40.73%</td>
+    <td>3.80%</td>
+    <td>72%</td>
+    <td>7</td>
+    <td>561</td>
+    <td>56.24%</td>
+    <td>53.89%</td>
+</tr>
+<tr>
+    <td>SID2436</td>
+    <td>Neythan Paz</td>
+    <td>99.68%</td>
+    <td>90.18%</td>
+    <td>6148</td>
+    <td>3.30%</td>
+    <td>312.36</td>
+    <td>56.66</td>
+    <td>48</td>
+    <td>43.42%</td>
+    <td>74.65%</td>
+    <td>5.55%</td>
+    <td>67%</td>
+    <td>713</td>
+    <td>326</td>
+    <td>59.87%</td>
+    <td>57.99%</td>
+</tr>
+<tr>
+    <td>SID2437</td>
+    <td>Andrea Rocha</td>
+    <td>89.49%</td>
+    <td>91.58%</td>
+    <td>6923</td>
+    <td>5.33%</td>
+    <td>233.78</td>
+    <td>47.46</td>
+    <td>44</td>
+    <td>57.60%</td>
+    <td>53.02%</td>
+    <td>15.86%</td>
+    <td>50%</td>
+    <td>497</td>
+    <td>308</td>
+    <td>56.76%</td>
+    <td>55.41%</td>
+</tr>
+
+
+                                    <!-- Add the remaining rows here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            } else {
+                stepContent.innerHTML = `<p>No specific content available for ${feature} yet.</p>`;
+            }
+
+            pendingItemsSection.style.display = 'none';
+            stepByStepDocument.style.display = 'block';
+        }
+
+        window.onload = function() {
+            showPendingItems();
+        };
+    </script>
+</body>
+</html>
+
+

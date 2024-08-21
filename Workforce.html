@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service Transition</title>
+    <style>
+        /* Existing CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #fff;
+            padding: 10px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .logo img {
+            width: 120px;
+            height: auto;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-grow: 1;
+            text-align: right;
+        }
+        .menu a {
+            margin-left: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu a:hover {
+            color: white;
+            background-color: #f05454;
+        }
+        .main-header {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 28px;
+            color: #4f4f4f;
+            font-weight: bold;
+            position: relative;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+        .features-section {
+            width: 25%;
+            background: linear-gradient(145deg, #ffffff, #f1f1f1);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .features-section:hover {
+            transform: translateY(-5px);
+        }
+        .features-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features-list li {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        .features-list li:hover {
+            background-color: #f05454;
+            color: white;
+            border-radius: 5px;
+        }
+        .step-by-step-document {
+            width: 75%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .document-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .document-header img {
+            max-height: 60px;
+        }
+        .document-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        .step-section {
+            margin-bottom: 20px;
+        }
+        .step-section h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .step-section p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .audience-table {
+            width: 100%; 
+            margin: 20px 0;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .audience-table th, .audience-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .audience-table th {
+            background-color: #f05454;
+            color: white;
+        }
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8a8988;
+            color: white;
+            padding: 20px;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="SO.png" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="index.html">Customer Service</a>
+            <a href="Workforce.html">Workforce</a>
+            <a href="StoreSupport.html">Store Support</a>
+        </nav>
+    </header>
+
+    <div class="main-header">
+        Customer Service Transition
+    </div>    
+
+    <div class="content-wrapper">
+        <div class="features-section">
+            <h4>Reporting Documentation</h4>
+            <ul class="features-list">
+                <li onclick="showDetails('power-bi')">Power BI</li>
+                <li onclick="showDetails('power-apps')">Power Apps</li>
+                <li onclick="showDetails('power-automate')">Power Automate</li>
+            </ul>
+        </div>
+        
+        <div id="step-by-step-document" class="step-by-step-document">
+            <div class="document-header">
+                <img src="SO.png" alt="Logo">
+                <div id="document-title" class="document-title">Reporting Documentation - Power BI Guide</div>
+            </div>
+            <div id="step-content" class="step-content">
+                <div class="step-section" id="power-bi-section">
+                    <h4>Power BI:</h4>
+                    <p>Here is the reporting repository that was under my supervision that I suggest transition to workforce.</p>
+                    <h4>Reports List:</h4>
+                    <ul>
+                        <li>Sales Performance Report</li>
+                        <li>Customer Satisfaction Dashboard</li>
+                        <li>Operational Efficiency Report</li>
+                        <li>Financial Overview Report</li>
+                        <li>Workforce Analytics Report</li>
+                    </ul>
+                </div>
+                <div class="step-section" id="power-apps-section">
+                    <h4>Power Apps:</h4>
+                    <p>Here are all the Power Apps that were under my supervision that I suggest transition to workforce.</p>
+                    <!-- Power Apps Content Goes Here -->
+                </div>
+                <div class="step-section" id="power-automate-section">
+                    <h4>Power Automate:</h4>
+                    <p>Here are all the Power Automate flows that were under my supervision that I suggest transition to workforce.</p>
+                    <!-- Power Automate Content Goes Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Customer Service Transition</p>
+    </footer>
+
+    <script>
+        function showDetails(feature) {
+            const stepByStepDocument = document.getElementById('step-by-step-document');
+            const stepContent = document.getElementById('step-content');
+            const documentTitle = document.getElementById('document-title');
+
+            documentTitle.textContent = `Reporting Documentation - ${feature.charAt(0).toUpperCase() + feature.slice(1).replace('-', ' ')} Guide`;
+
+            stepContent.innerHTML = '';
+            if (feature === 'power-bi') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Power BI:</h4>
+                        <p>Here is the reporting repository that was under my supervision that I suggest transition to workforce.</p>
+                        <h4>Reports List:</h4>
+                        <ul>
+                            <li>Customer Service Resolution Corporate & Franchise Locations. (RVP, RM, Store Level)</li>
+                            <li>Disputes Performance Dashboard - BBB / Chargebacks / Care Credits</li>
+                            <li>Store Call Performance</li>
+                            <li>Social Media - Keywords Analysis (Merged)</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (feature === 'power-apps') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Power Apps:</h4>
+                        <p>Here are all the Power Apps that were under my supervision that I suggest transition to workforce.</p>
+                        <h4>Power Apps:</h4>
+                        <ul>
+                            <li>Power Apps Corporate RM & Stores - 1 x Store (RM should see all district stores on their dashboards</li>
+                            <li>Power Apps Franchise Owner & Stores - 1 x Store (Owner should see multiple stores in their dashboard)</li>
+                            <li>Customer Retention Staff Coaching Tracker - Assess with OM if moving to a different method</li>
+                            <li>Customer Sucess App - This is where stores submit their responses for customer resolution site</li>
+                        </ul>
+                    </div>
+                    </div>
+                `;
+            } else if (feature === 'power-automate') {
+                stepContent.innerHTML = `
+                    <div class="step-section">
+                        <h4>Power Automate:</h4>
+                        <p>Here are all the Power Automate flows that were under my supervision that I suggest transition to workforce.</p>
+                        <ul>
+                            <li>Power Bi Refresh Flows</li>
+                            <li>Customer Resolution Comment Added Flow</li>
+                            <li>Customer Resolution Comment Deleted Flow</li>
+                        </ul>
+                    </div>
+                    </div>
+                    </div>
+                `;
+            } else {
+                stepContent.innerHTML = `<p>No specific content available for ${feature} yet.</p>`;
+            }
+        }
+
+        window.onload = function() {
+            showDetails('power-bi');
+        };
+    </script>
+</body>
+</html>
+
+
+
+

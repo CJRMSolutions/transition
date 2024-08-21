@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Store Support Transition</title>
+    <style>
+        /* Existing CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #fff;
+            padding: 10px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .logo img {
+            width: 120px;
+            height: auto;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-grow: 1;
+            text-align: right;
+        }
+        .menu a {
+            margin-left: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu a:hover {
+            color: white;
+            background-color: #f05454;
+        }
+        .main-header {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 28px;
+            color: #4f4f4f;
+            font-weight: bold;
+            position: relative;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+        .features-section {
+            width: 25%;
+            background: linear-gradient(145deg, #ffffff, #f1f1f1);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .features-section:hover {
+            transform: translateY(-5px);
+        }
+        .features-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features-list li {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+            font-size: 18px;
+        }
+        .features-list li a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .features-list li:hover {
+            background-color: #f05454;
+            color: white;
+            border-radius: 5px;
+        }
+        .features-list li:hover a {
+            color: white;
+        }
+        .step-by-step-document {
+            width: 75%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .document-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .document-header img {
+            max-height: 60px;
+        }
+        .document-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        .step-section {
+            margin-bottom: 20px;
+        }
+        .step-section h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .step-section p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #f05454;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .action-button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .action-button:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .action-button:hover {
+            background-color: #d94343;
+            transform: scale(1.05);
+        }
+        .audience-table {
+            width: 100%; 
+            margin: 20px 0;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .audience-table th, .audience-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .audience-table th {
+            background-color: #f05454;
+            color: white;
+        }
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8a8988;
+            color: white;
+            padding: 20px;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="SO.png" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="index.html">Customer Service</a>
+            <a href="Workforce.html">Workforce</a>
+            <a href="StoreSupport.html">Store Support</a>
+        </nav>
+    </header>
+
+    <div class="main-header">
+        Store Support Documentation
+    </div>    
+
+    <div class="content-wrapper">
+        <div class="features-section">
+            <h4>Store Support Documentation</h4>
+            <ul class="features-list">
+                <li><a href="https://nowoptics-my.sharepoint.com/personal/avallecillo_nowoptics_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Favallecillo%5Fnowoptics%5Fcom%2FDocuments%2FSupport%20Team%20Index%20V1&FolderCTID=0x0120006CC1A67A1F607A4394C976B7DA1F5E02&view=0" target="_blank">Open Store Support Documentation</a></li>
+                <li onclick="showDetails('store-support-report')">Store Support Reporting</li>
+                <li onclick="showDetails('attendance-adherence-payroll-sop')">Attendance, Adherence & Payroll SOP</li>
+                <li onclick="showDetails('performance-bonus-agents')">Performance Bonus Agents</li>
+                <li onclick="showDetails('supervisor-bonus-structure')">Supervisors Bonus Structure</li>
+                <li onclick="showDetails('recommendations')">Recommendations</li>
+            </ul>
+        </div>
+        
+        <div id="step-by-step-document" class="step-by-step-document">
+            <div class="document-header">
+                <img src="SO.png" alt="Logo">
+                <div id="document-title" class="document-title">Store Support Reporting Guide</div>
+            </div>
+            <div id="step-content" class="step-content">
+                <!-- Default content here -->
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Store Support Transition</p>
+    </footer>
+
+    <script>
+        function showDetails(feature) {
+            const stepContent = document.getElementById('step-content');
+            const documentTitle = document.getElementById('document-title');
+
+            let content = '';
+            let title = '';
+
+            if (feature === 'store-support-report') {
+                title = "Store Support Reporting Guide";
+                content = `
+                    <div class="step-section">
+                        <h4>Store Support Reporting:</h4>
+                        <p>Support team has two crucial reports to measure performance based on call handling metrics such as AHT, ACW, Calls and QA Score.</p>
+                        <br>
+                        <p style="margin-top: 20px;">Store Support Business Review will outline the day to day operation results on calls. It will give you key metrics such as Offered Calls, Handled Calls, AHT, Abandon Rate, Service Level % as well as an overview of the dispositions performance.</p>
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiYWFlYjVmNTctMmIwZS00NWZjLTk4MzAtMzk1Mzk4MDZhZTdjIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9" class="action-button" target="_blank">View Business Review</a>
+                        <br>
+                        <br>
+                        <p style="margin-top: 20px;">Store Support Performance Ranking is used to track agents performance based on key metrics weights using call performance indicators.</p>
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiOTk0MmFjMjQtYTI2Yi00MzI3LWEzMGQtMTFhNmRmNGE1NjAyIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9&pageName=ReportSectionf27228d88848457c75d4" class="action-button" target="_blank">View Performance Ranking</a>
+                        <br>
+                        <br>
+                        <p style="margin-top: 20px;">Store Performance Bonus file is utilized to provide the payout to the team members based on their performance. Refer to Store Support Performance Bonus SOP for the logic in the calculation.</p>
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiYzY4ODkyZDItOGU4Mi00YmExLTg4ODYtNTkzNjIxMzE0OWZlIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9&pageName=ReportSectiondb0e046e6e7df87a00cb" class="action-button" target="_blank">View Bonus File</a>
+                        <br>
+                        <br>
+                        <p style="margin-top: 20px;">Store Support Attendance & Payroll is managed through the BPO Production File in which you can monitor login trends and ensure payroll is accurate.</p>
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiN2IyZmFkMTctMWQyMS00NDZmLWE4NGUtNzBmZDBkM2QzNzY5IiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9&pageName=ReportSection" class="action-button" target="_blank">View Attendance & Payroll</a>
+                    </div>
+                `;
+            } else if (feature === 'attendance-adherence-payroll-sop') {
+                title = "Attendance, Adherence & Payroll SOP";
+                content = `
+                    <div class="step-section">
+                        <h4>Attendance, Adherence & Payroll SOP:</h4>
+                        <p>Customer service has key metrics for measuring attendance and adherence to deliver a highly efficient operation. This includes login hours, payroll delivery, schedule adherence, and ensuring everyone is doing what they are supposed to.</p>
+                        <h4>Process:</h4>
+                        <ul>
+                            <li>This is overseen by all supervisors.</li>
+                            <li>Every day, supervisors check the previous day's attendance and adherence to ensure we are capturing/reporting system issues, AUX abusage, payroll corrections, and identifying repeat offenders.</li>
+                            <li>This data is available at a macro level through the performance ranking and at a micro level in the BPO Production dashboard.</li>
+                            <li>Team members are allowed a 5-minute bathroom break every day.</li>
+                            <li>Supervisors must review their team's performance every day to ensure smooth operation.</li>
+                            <li>Attendance management is crucial to ensure discipline is top of mind in the department. Tardiness must be managed closely to address behaviors on the go.</li>
+                        </ul>
+                        <h4>Escalation Process:</h4>
+                        <p>When issues arise with payroll and are outside the due date, supervisors must submit a payroll correction to ensure agents are not deducted unnecessarily.</p>
+                    </div>
+                `;
+            } else if (feature === 'performance-bonus-agents') {
+                title = "Agent Bonus Structure";
+                content = `
+                    <div class="step-section">
+                        <h4>Agent Bonus Structure:</h4>
+                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for agents:</p>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>KPI</th>
+                                    <th>Weight</th>
+                                    <th>Structure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QA Voice</td>
+                                    <td>$100</td>
+                                    <td>
+                                        >= 90% = $100<br>
+                                        >= 88.5% &lt; 89.99% = $95<br>
+                                        >= 85.5% &lt; 88.49% = $90<br>
+                                        >= 82.5% &lt; 84.99% = $83<br>
+                                        >= 80% &lt; 82.49% = $80
+                                        >= 0% &lt; 79.99% = $0
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Total</td>
+                                    <td>100%</</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            + $50 attendance bonus if logins at 95%<br>
+                            **Login hours must be at 98% to qualify for bonus.<br>
+                            **Adherence must be at 95% to qualify for bonus.<br>
+                            **AHT Payout requires min 80% QA to pass.
+                        </p>
+                    </div>
+                `;
+            } else if (feature === 'supervisor-bonus-structure') {
+                title = "Supervisors Bonus Structure";
+                content = `
+                    <div class="step-section">
+                        <h4>Supervisors Bonus Structure:</h4>
+                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for supervisors:</p>
+                        <table class="audience-table">
+                            <thead>
+                                <tr>
+                                    <th>KPI</th>
+                                    <th>Weight</th>
+                                    <th>Target</th>
+                                    <th>Structure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QA</td>
+                                    <td>50%</td>
+                                    <td>85%</td>
+                                    <td>If less than 85%, then 50% total payout.</td>
+                                </tr>
+                                <tr>
+                                    <td>Ticket Completion</td>
+                                    <td>25%</td>
+                                    <td>90%</td>
+                                    <td>If less than target, then percentage from total times weight.</td>
+                                </tr>
+                                <tr>
+                                    <td>Social Media Completion</td>
+                                    <td>25%</td>
+                                    <td>90%</td>
+                                    <td>If less than target, then percentage from total times weight.</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td>100%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (feature === 'recommendations') {
+                title = "Recommendations";
+                content = `
+                    <div class="step-section">
+                        <h4>Recommendations:</h4>
+                        <ul>
+                            <li><a href="your-hyperlink-here" target="_blank">Review/Revamp Disposition Catalog</a></li>
+                            <li>Expand QA evaluations beyond voice, tickets may also work.</li>
+                        </ul>
+                    </div>
+                `;
+            }
+
+            documentTitle.textContent = title;
+            stepContent.innerHTML = content;
+        }
+
+        function openDocumentation() {
+            window.open('https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/_layouts/15/Doc.aspx?sourcedoc=%7B0962E513-648C-407F-A98C-592A3B75A498%7D&file=Support%20Team%20Dispositions%2011_2023.xlsx&wdLOR=c46BF2A0F-CBB2-6A41-9322-3DA856A3AF19&fromShare=true&action=default&mobileredirect=true', '_blank');
+        }
+
+        window.onload = function() {
+            showDetails('store-support-report');
+        };
+    </script>
+</body>
+</html>
+
+
+
+

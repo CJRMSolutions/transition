@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
     <title>Store Support Transition</title>
+    <link rel="icon" href="Stan.ico" type="image/x-icon">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -140,6 +141,56 @@
             font-size: 16px;
             color: #555;
         }
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            width: 200px;
+            height: 150px;
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        .card-front {
+            background-color: #f05454;
+        }
+        .card-back {
+            background-color: #2c3e50;
+            transform: rotateY(180deg);
+            padding: 10px;
+            font-size: 14px;
+        }
+        .card a {
+            text-decoration: none;
+            color: white;
+        }
         .action-button {
             display: inline-block;
             padding: 12px 24px;
@@ -176,19 +227,29 @@
             background-color: #d94343;
             transform: scale(1.05);
         }
-        .audience-table {
-            width: 100%; 
-            margin: 20px 0;
+        .ticket-table {
+            width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            margin-top: 20px;
         }
-        .audience-table th, .audience-table td {
+        .ticket-table th, .ticket-table td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
         }
-        .audience-table th {
+        .ticket-table th {
             background-color: #f05454;
-            color: white;
+            color: #ffffff;
+        }
+        .ticket-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .ticket-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .ticket-table tr.customer-issue {
+            background-color: #e6ffe6; /* Cambiado a un verde claro */
         }
         footer {
             display: flex;
@@ -220,19 +281,20 @@
     </header>
 
     <div class="main-header">
-        Store Support Documentation
+        Store Support Processes
     </div>    
 
     <div class="content-wrapper">
         <div class="features-section">
-            <h4>Store Support Documentation</h4>
+            <h4>Store Support Processes</h4>
             <ul class="features-list">
-                <li><a href="https://nowoptics-my.sharepoint.com/personal/avallecillo_nowoptics_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Favallecillo%5Fnowoptics%5Fcom%2FDocuments%2FSupport%20Team%20Index%20V1&FolderCTID=0x0120006CC1A67A1F607A4394C976B7DA1F5E02&view=0" target="_blank">Open Store Support Documentation</a></li>
                 <li onclick="showDetails('store-support-report')">Store Support Reporting</li>
                 <li onclick="showDetails('attendance-adherence-payroll-sop')">Attendance, Adherence & Payroll SOP</li>
-                <li onclick="showDetails('performance-bonus-agents')">Performance Bonus Agents</li>
-                <li onclick="showDetails('supervisor-bonus-structure')">Supervisors Bonus Structure</li>
-                <li onclick="showDetails('recommendations')">Recommendations</li>
+                <li onclick="showDetails('qa-section')">Store Support - QA Section</li>
+                <li onclick="showDetails('onboarding-offboarding')">Store Support - Onboarding/Offboarding</li>
+                <li onclick="showDetails('zeus-articles')">Store Support - Zeus Articles</li>
+                <li onclick="showDetails('clover-articles')">Store Support - Clover Articles</li>
+                <li onclick="showDetails('tickets-management')">Store Support - Tickets Management</li>
             </ul>
         </div>
         
@@ -242,8 +304,204 @@
                 <div id="document-title" class="document-title">Store Support Reporting Guide</div>
             </div>
             <div id="step-content" class="step-content">
-                <!-- Default content here -->
+                <div class="documentation-buttons">
+                    <a href="#" target="_blank">QA Process</a>
+                    <a href="#" target="_blank">Onboarding/Offboarding</a>
+                    <a href="#" target="_blank">Zeus Articles</a>
+                    <a href="#" target="_blank">Clover Articles</a>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Gift%20Cards?csf=1&web=1&e=F91bqO" target="_blank">Gift Cards</a>
+                            </div>
+                            <div class="card-back">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Gift%20Cards?csf=1&web=1&e=F91bqO" target="_blank">Small description about Gift Cards.</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Connectivity%20Issues?csf=1&web=1&e=eAKwei" target="_blank">Connectivity Issues</a>
+                            </div>
+                            <div class="card-back">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Connectivity%20Issues?csf=1&web=1&e=eAKwei" target="_blank">Small description about Connectivity Issues.</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Refunds?csf=1&web=1&e=YQqcfu" target="_blank">Refunds</a>
+                            </div>
+                            <div class="card-back">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Refunds?csf=1&web=1&e=YQqcfu" target="_blank">Small description about Refunds.</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Payments?csf=1&web=1&e=E3fuE4" target="_blank">Payments</a>
+                            </div>
+                            <div class="card-back">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Payments?csf=1&web=1&e=E3fuE4" target="_blank">Small description about Payments.</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Care%20Credit%20Transactions?csf=1&web=1&e=zIyKSb" target="_blank">Care Credit Transactions</a>
+                            </div>
+                            <div class="card-back">
+                                <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Care%20Credit%20Transactions?csf=1&web=1&e=zIyKSb" target="_blank">Small description about Care Credit Transactions.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div id="tickets-management" class="step-section">
+                    <h4>Tickets Management:</h4>
+                    <table class="ticket-table">
+                        <thead>
+                            <tr>
+                                <th>Ticket Subcategory</th>
+                                <th>Category</th>
+                                <th>Assigned to</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IRIS Application Down</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS BPO Employee Credential Request</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Corporate Login Access</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Doctor Schedule Support</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Duplicate Accounts</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Employee Purchase</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Franchise Login Access</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Latency</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Orders Issues</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Store Schedule</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>IRIS Wrong Frame Measurements</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Application Down</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus BPO Employee Credential Request</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Corporate Login Access</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Doctor Schedule Support</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Duplicate Accounts</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Employee Purchase</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Franchise Login Access</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Latency</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Orders Issues</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Store Schedule</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr>
+                                <td>Zeus Wrong Frame Measurements</td>
+                                <td>POS System</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr class="customer-issue">
+                                <td>Contact Lenses Status - Store Only</td>
+                                <td>Customer Issues</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr class="customer-issue">
+                                <td>Debit Card Refund</td>
+                                <td>Customer Issues</td>
+                                <td>Store Support</td>
+                            </tr>
+                            <tr class="customer-issue">
+                                <td>Refunds Over 50%</td>
+                                <td>Customer Issues</td>
+                                <td>Store Support</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -271,12 +529,8 @@
                         <a href="https://app.powerbi.com/view?r=eyJrIjoiYWFlYjVmNTctMmIwZS00NWZjLTk4MzAtMzk1Mzk4MDZhZTdjIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9" class="action-button" target="_blank">View Business Review</a>
                         <br>
                         <br>
-                        <p style="margin-top: 20px;">Store Support Performance Ranking is used to track agents performance based on key metrics weights using call performance indicators.</p>
+                        <p style="margin-top: 20px;">Store Support Performance Ranking es utilizado para seguir el desempeño de los agentes basándose en indicadores clave de rendimiento.</p>
                         <a href="https://app.powerbi.com/view?r=eyJrIjoiOTk0MmFjMjQtYTI2Yi00MzI3LWEzMGQtMTFhNmRmNGE1NjAyIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9&pageName=ReportSectionf27228d88848457c75d4" class="action-button" target="_blank">View Performance Ranking</a>
-                        <br>
-                        <br>
-                        <p style="margin-top: 20px;">Store Performance Bonus file is utilized to provide the payout to the team members based on their performance. Refer to Store Support Performance Bonus SOP for the logic in the calculation.</p>
-                        <a href="https://app.powerbi.com/view?r=eyJrIjoiYzY4ODkyZDItOGU4Mi00YmExLTg4ODYtNTkzNjIxMzE0OWZlIiwidCI6ImUwZDIxY2IzLTg2MGUtNGMwZi05YzIwLWVmMWI3NDY2YTk1YyIsImMiOjJ9&pageName=ReportSectiondb0e046e6e7df87a00cb" class="action-button" target="_blank">View Bonus File</a>
                         <br>
                         <br>
                         <p style="margin-top: 20px;">Store Support Attendance & Payroll is managed through the BPO Production File in which you can monitor login trends and ensure payroll is accurate.</p>
@@ -291,109 +545,354 @@
                         <p>Customer service has key metrics for measuring attendance and adherence to deliver a highly efficient operation. This includes login hours, payroll delivery, schedule adherence, and ensuring everyone is doing what they are supposed to.</p>
                         <h4>Process:</h4>
                         <ul>
-                            <li>This is overseen by all supervisors.</li>
-                            <li>Every day, supervisors check the previous day's attendance and adherence to ensure we are capturing/reporting system issues, AUX abusage, payroll corrections, and identifying repeat offenders.</li>
+                            <li>This is overseen by supervisor.</li>
+                            <li>Every day, supervisor checks the previous day's attendance and adherence to ensure we are capturing/reporting system issues, AUX abusage, payroll corrections, and identifying repeat offenders.</li>
                             <li>This data is available at a macro level through the performance ranking and at a micro level in the BPO Production dashboard.</li>
                             <li>Team members are allowed a 5-minute bathroom break every day.</li>
-                            <li>Supervisors must review their team's performance every day to ensure smooth operation.</li>
+                            <li>Supervisor must review their team's performance every day to ensure smooth operation.</li>
                             <li>Attendance management is crucial to ensure discipline is top of mind in the department. Tardiness must be managed closely to address behaviors on the go.</li>
                         </ul>
                         <h4>Escalation Process:</h4>
                         <p>When issues arise with payroll and are outside the due date, supervisors must submit a payroll correction to ensure agents are not deducted unnecessarily.</p>
                     </div>
                 `;
-            } else if (feature === 'performance-bonus-agents') {
-                title = "Agent Bonus Structure";
+            } else if (feature === 'qa-section') {
+                title = "Store Support - QA Section";
                 content = `
                     <div class="step-section">
-                        <h4>Agent Bonus Structure:</h4>
-                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for agents:</p>
-                        <table class="audience-table">
-                            <thead>
-                                <tr>
-                                    <th>KPI</th>
-                                    <th>Weight</th>
-                                    <th>Structure</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>QA Voice</td>
-                                    <td>$100</td>
-                                    <td>
-                                        >= 90% = $100<br>
-                                        >= 88.5% &lt; 89.99% = $95<br>
-                                        >= 85.5% &lt; 88.49% = $90<br>
-                                        >= 82.5% &lt; 84.99% = $83<br>
-                                        >= 80% &lt; 82.49% = $80
-                                        >= 0% &lt; 79.99% = $0
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Total</td>
-                                    <td>100%</</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            + $50 attendance bonus if logins at 95%<br>
-                            **Login hours must be at 98% to qualify for bonus.<br>
-                            **Adherence must be at 95% to qualify for bonus.<br>
-                            **AHT Payout requires min 80% QA to pass.
-                        </p>
-                    </div>
-                `;
-            } else if (feature === 'supervisor-bonus-structure') {
-                title = "Supervisors Bonus Structure";
-                content = `
-                    <div class="step-section">
-                        <h4>Supervisors Bonus Structure:</h4>
-                        <p>To continue to improve our customer experience, and make sure we continue to improve our day-to-day practices, here is the new performance bonus expectations and format for supervisors:</p>
-                        <table class="audience-table">
-                            <thead>
-                                <tr>
-                                    <th>KPI</th>
-                                    <th>Weight</th>
-                                    <th>Target</th>
-                                    <th>Structure</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>QA</td>
-                                    <td>50%</td>
-                                    <td>85%</td>
-                                    <td>If less than 85%, then 50% total payout.</td>
-                                </tr>
-                                <tr>
-                                    <td>Ticket Completion</td>
-                                    <td>25%</td>
-                                    <td>90%</td>
-                                    <td>If less than target, then percentage from total times weight.</td>
-                                </tr>
-                                <tr>
-                                    <td>Social Media Completion</td>
-                                    <td>25%</td>
-                                    <td>90%</td>
-                                    <td>If less than target, then percentage from total times weight.</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">Total</td>
-                                    <td>100%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            } else if (feature === 'recommendations') {
-                title = "Recommendations";
-                content = `
-                    <div class="step-section">
-                        <h4>Recommendations:</h4>
+                        <h4>QA Section:</h4>
                         <ul>
-                            <li><a href="your-hyperlink-here" target="_blank">Review/Revamp Disposition Catalog</a></li>
-                            <li>Expand QA evaluations beyond voice, tickets may also work.</li>
+                            <li>Ensure all processes are documented.</li>
+                            <li>Review QA evaluations regularly to identify trends.</li>
+                            <li>Provide feedback to agents based on QA evaluations.</li>
                         </ul>
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/QA/Support%20Team%20Dispositions%2011_2023.xlsx?d=w0962e513648c407fa98c592a3b75a498&csf=1&web=1&e=TbUPSr" target="_blank">Dispositions</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/QA/Support%20Team%20Dispositions%2011_2023.xlsx?d=w0962e513648c407fa98c592a3b75a498&csf=1&web=1&e=TbUPSr" target="_blank">Small description about Dispositions.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/QA/SS%20Scorecard%20-%20Detailed%20QA%20Measurements_%20Compendium%20(1).xlsx?d=w401f5d9667fc4fc4ab60599d2b281591&csf=1&web=1&e=Pkxc4F" target="_blank">Scorecard & Compendium</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/QA/SS%20Scorecard%20-%20Detailed%20QA%20Measurements_%20Compendium%20(1).xlsx?d=w401f5d9667fc4fc4ab60599d2b281591&csf=1&web=1&e=Pkxc4F" target="_blank">Small description about Scorecard and Compendium.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (feature === 'onboarding-offboarding') {
+                title = "Store Support - Onboarding/Offboarding";
+                content = `
+                    <div class="step-section">
+                        <h4>Onboarding/Offboarding:</h4>
+                        <ul>
+                            <li>Complete all necessary paperwork for onboarding new employees.</li>
+                            <li>Ensure offboarding processes are followed correctly to avoid any compliance issues.</li>
+                            <li>Maintain records of all onboarding and offboarding activities.</li>
+                        </ul>
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:w:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Onboarding%20%26%20Offboarding/Onboarding_Offboarding%20Manual%20Support%20Team%20V1%20(1).docx?d=w6938133f606e4d28afabbafd8db49cdb&csf=1&web=1&e=SbZgqf" target="_blank">Onboarding/Offboarding</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:w:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Onboarding%20%26%20Offboarding/Onboarding_Offboarding%20Manual%20Support%20Team%20V1%20(1).docx?d=w6938133f606e4d28afabbafd8db49cdb&csf=1&web=1&e=SbZgqf" target="_blank">Small description about Onboarding/Offboarding processes.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (feature === 'zeus-articles') {
+                title = "Store Support - Zeus Articles";
+                content = `
+                    <div class="step-section">
+                        <h4>Zeus Articles:</h4>
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Presales%20%26%20Place%20an%20Order?csf=1&web=1&e=UXak2r" target="_blank">Presales & Place an Order</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Presales%20%26%20Place%20an%20Order?csf=1&web=1&e=UXak2r" target="_blank">Small description about Presales & Place an Order.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Presale%20and%20Aftersale%20Discounts?csf=1&web=1&e=9OhouT" target="_blank">Presale and Aftersale Discounts</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Presale%20and%20Aftersale%20Discounts?csf=1&web=1&e=9OhouT" target="_blank">Small description about Presale and Aftersale Discounts.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/OD%20Adjustments?csf=1&web=1&e=CM2UZZ" target="_blank">OD Adjustments</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/OD%20Adjustments?csf=1&web=1&e=CM2UZZ" target="_blank">Small description about OD Adjustments.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Frame%20Availability%20%26%20Inventory%20Adjustment?csf=1&web=1&e=vzyheL" target="_blank">Frame Availability & Inventory Adjustment</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Frame%20Availability%20%26%20Inventory%20Adjustment?csf=1&web=1&e=vzyheL" target="_blank">Small description about Frame Availability & Inventory Adjustment.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Duplicate%20Files?csf=1&web=1&e=Hg9hSL" target="_blank">Duplicate Files</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Duplicate%20Files?csf=1&web=1&e=Hg9hSL" target="_blank">Small description about Duplicate Files.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Promotions%20Troubleshooting?csf=1&web=1&e=RwTgH2" target="_blank">Promotions Troubleshooting</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Promotions%20Troubleshooting?csf=1&web=1&e=RwTgH2" target="_blank">Small description about Promotions Troubleshooting.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Employee%20Benefit?csf=1&web=1&e=vAdNe6" target="_blank">Employee Benefit</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Zeus/Employee%20Benefit?csf=1&web=1&e=vAdNe6" target="_blank">Small description about Employee Benefit.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (feature === 'clover-articles') {
+                title = "Store Support - Clover Articles";
+                content = `
+                    <div class="step-section">
+                        <h4>Clover Articles:</h4>
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Gift%20Cards?csf=1&web=1&e=F91bqO" target="_blank">Gift Cards</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Gift%20Cards?csf=1&web=1&e=F91bqO" target="_blank">Small description about Gift Cards.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Connectivity%20Issues?csf=1&web=1&e=eAKwei" target="_blank">Connectivity Issues</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Connectivity%20Issues?csf=1&web=1&e=eAKwei" target="_blank">Small description about Connectivity Issues.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Refunds?csf=1&web=1&e=YQqcfu" target="_blank">Refunds</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Refunds?csf=1&web=1&e=YQqcfu" target="_blank">Small description about Refunds.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Payments?csf=1&web=1&e=E3fuE4" target="_blank">Payments</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Payments?csf=1&web=1&e=E3fuE4" target="_blank">Small description about Payments.</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Care%20Credit%20Transactions?csf=1&web=1&e=zIyKSb" target="_blank">Care Credit Transactions</a>
+                                    </div>
+                                    <div class="card-back">
+                                        <a href="https://nowoptics-my.sharepoint.com/:f:/r/personal/avallecillo_nowoptics_com/Documents/Support%20Team%20Index%20V1/Clover/Care%20Credit%20Transactions?csf=1&web=1&e=zIyKSb" target="_blank">Small description about Care Credit Transactions.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (feature === 'tickets-management') {
+                title = "Store Support - Tickets Management";
+                content = `
+                    <div class="step-section">
+                        <h4>Tickets Management:</h4>
+                        <table class="ticket-table">
+                            <thead>
+                                <tr>
+                                    <th>Ticket Subcategory</th>
+                                    <th>Category</th>
+                                    <th>Assigned to</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>IRIS Application Down</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS BPO Employee Credential Request</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Corporate Login Access</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Doctor Schedule Support</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Duplicate Accounts</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Employee Purchase</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Franchise Login Access</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Latency</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Orders Issues</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Store Schedule</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>IRIS Wrong Frame Measurements</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Application Down</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus BPO Employee Credential Request</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Corporate Login Access</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Doctor Schedule Support</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Duplicate Accounts</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Employee Purchase</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Franchise Login Access</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Latency</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Orders Issues</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Store Schedule</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr>
+                                    <td>Zeus Wrong Frame Measurements</td>
+                                    <td>POS System</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr class="customer-issue">
+                                    <td>Contact Lenses Status - Store Only</td>
+                                    <td>Customer Issues</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr class="customer-issue">
+                                    <td>Debit Card Refund</td>
+                                    <td>Customer Issues</td>
+                                    <td>Store Support</td>
+                                </tr>
+                                <tr class="customer-issue">
+                                    <td>Refunds Over 50%</td>
+                                    <td>Customer Issues</td>
+                                    <td>Store Support</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 `;
             }
@@ -402,17 +901,9 @@
             stepContent.innerHTML = content;
         }
 
-        function openDocumentation() {
-            window.open('https://nowoptics-my.sharepoint.com/:x:/r/personal/avallecillo_nowoptics_com/_layouts/15/Doc.aspx?sourcedoc=%7B0962E513-648C-407F-A98C-592A3B75A498%7D&file=Support%20Team%20Dispositions%2011_2023.xlsx&wdLOR=c46BF2A0F-CBB2-6A41-9322-3DA856A3AF19&fromShare=true&action=default&mobileredirect=true', '_blank');
-        }
-
         window.onload = function() {
             showDetails('store-support-report');
         };
     </script>
 </body>
 </html>
-
-
-
-
